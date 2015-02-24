@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class introM : MonoBehaviour {
+public class intro : MonoBehaviour {
 
 	float delay = 10.0f;
 	public _MAIN main;
