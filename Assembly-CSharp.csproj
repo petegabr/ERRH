@@ -49,12 +49,12 @@
      <Compile Include="Assets\Resources\Scripts\_MAIN.cs" />
      <Compile Include="Assets\Resources\Scripts\enviroment.cs" />
      <Compile Include="Assets\Resources\Scripts\escapeToMainMenu.cs" />
+     <Compile Include="Assets\Resources\Scripts\exitMain.cs" />
      <Compile Include="Assets\Resources\Scripts\intro.cs" />
      <Compile Include="Assets\Resources\Scripts\mainMenu.cs" />
      <Compile Include="Assets\Resources\Scripts\skipToNext.cs" />
      <Compile Include="Assets\Resources\Scripts\splash.cs" />
      <Compile Include="Assets\Resources\Scripts\story.cs" />
-     <Compile Include="Assets\exitMain.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
