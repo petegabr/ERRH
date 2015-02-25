@@ -21,7 +21,7 @@ public class enviroment : MonoBehaviour {
 	private GameObject[] trees = null;
 
 	// FENCE
-	// ...
+	private GameObject[] fences = null;
 
 	// PLAYER
 	// ...
@@ -34,6 +34,7 @@ public class enviroment : MonoBehaviour {
 		floorSetup();
 		lightSetup();
 		plantTrees();
+		fenceSetup();
 	}
 	
 	void Update () {
@@ -113,8 +114,15 @@ public class enviroment : MonoBehaviour {
 		return new Vector3(Random.Range(-d, d), 0, Random.Range(-d, d));
 	}
 
-	// FENCE
-	// ...
+	// FENCE // !!! -- spremeni tako, da se bo dalo polje raztegovati, ograje pa se bojo primerno podaljšale!!
+	void fenceSetup() {
+		fences = new GameObject[4];
+		for (int i = 0; i < 4; i++) {
+			fences[i] = Instantiate(Resources.Load("Prefabs/Fence")) as GameObject;
+			fences[i].transform.Rotate(new Vector3(0f, i * 90f, 0f));
+			fences[i].transform.Translate(new Vector3(0f, 0f, floorDimension * floorTileDimension / 2));
+		}
+	}
 	
 	// PLAYER
 	// ...
