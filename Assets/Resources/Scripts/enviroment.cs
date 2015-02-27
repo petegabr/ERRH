@@ -16,23 +16,27 @@ public class enviroment : MonoBehaviour {
 	private GameObject globalLight2 = null;
 
 	// TREES
+	private GameObject[] trees = null;
 	private int differentTrees = 2;
 	private int treeCount = 100;
-	private GameObject[] trees = null;
+	float minTreeSize = 0.5f;
+	float maxTreeSize = 1f;
 
 	// FENCE
 	private GameObject[] fences = null;
 
 	// PLAYER
-	// ...
+	GameObject player = null;
 	
 	// ENEMIES
 	// ...
 	// I think, enemies should have their own script
 
 	void Start () {
+		Screen.showCursor = false;
 		floorSetup();
 		lightSetup();
+		PlayerSetup();
 		plantTrees();
 		fenceSetup();
 	}
@@ -96,11 +100,17 @@ public class enviroment : MonoBehaviour {
 
 	// TREES
 
+	Vector3 randomScale (float minScale, float maxScale) {
+		float scaleFactor = Random.Range(minScale, maxScale);
+		return new Vector3(scaleFactor, scaleFactor, scaleFactor);
+	}
+
 	void plantTrees () {
 		trees = new GameObject[treeCount];
 		for (int i = 0; i < treeCount; i++) {
 			trees[i] = Instantiate(Resources.Load(randomTreePath())) as GameObject;
 			trees[i].transform.position = randomTreePosition();
+			trees[i].transform.localScale = randomScale(minTreeSize, maxTreeSize);
 		}
 	}
 
@@ -125,7 +135,10 @@ public class enviroment : MonoBehaviour {
 	}
 	
 	// PLAYER
-	// ...
+
+	void PlayerSetup () {
+		player = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
+	}
 	
 	// ENEMIES
 	// ...
