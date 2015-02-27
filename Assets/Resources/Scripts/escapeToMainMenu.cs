@@ -13,6 +13,7 @@ public class escapeToMainMenu : MonoBehaviour {
 	void FixedUpdate () {
 		if (!exitingLevel && Input.GetKey(KeyCode.Escape)) {
 			exitingLevel = true;
+			Screen.lockCursor = false;
 			main.loadLevel(2, 0.0f);
 		}
 	}

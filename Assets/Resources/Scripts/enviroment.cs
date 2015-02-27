@@ -4,7 +4,7 @@ using System.Collections;
 public class enviroment : MonoBehaviour {
 
 	// FLOOR
-	private int differentMaterials = 4;
+	private int differentMaterials = 1;//4;
 	private Material[] floorMaterial = null;
 
 	private GameObject[] floor = null;
@@ -17,23 +17,24 @@ public class enviroment : MonoBehaviour {
 
 	// TREES
 	private GameObject[] trees = null;
-	private int differentTrees = 2;
-	private int treeCount = 100;
+	private int differentTrees = 3;
+	private int treeCount = 200;
 	float minTreeSize = 0.5f;
-	float maxTreeSize = 1f;
+	float maxTreeSize = 1.5f;
 
 	// FENCE
 	private GameObject[] fences = null;
 
 	// PLAYER
-	GameObject player = null;
+	private GameObject player = null;
+	private Vector3 lookingAt;
 	
 	// ENEMIES
 	// ...
 	// I think, enemies should have their own script
 
 	void Start () {
-		Screen.showCursor = false;
+		//Screen.lockCursor = true;
 		floorSetup();
 		lightSetup();
 		PlayerSetup();
@@ -43,7 +44,11 @@ public class enviroment : MonoBehaviour {
 	
 	void Update () {
 		// TREES LOOKING TOWARDS CAMERA ...
-
+		lookingAt = Camera.main.transform.position;
+		lookingAt.y = 0.1f;
+		foreach (GameObject tree in trees) {
+			tree.transform.LookAt(lookingAt);
+		}
 	
 	}
 
@@ -63,7 +68,7 @@ public class enviroment : MonoBehaviour {
 				floorPosition.z = j * floorTileDimension + floorTileDimension / 2;
 				floor[stevec] = Instantiate(Resources.Load("Prefabs/FloorPlane"), floorPosition, Quaternion.identity) as GameObject;
 				floor[stevec].renderer.material = randomFloorMaterial();
-				floor[stevec].renderer.transform.Rotate(new Vector3(0, Random.Range(0, 3) * 90, 0));
+				//floor[stevec].renderer.transform.Rotate(new Vector3(0, Random.Range(0, 3) * 90, 0));
 				stevec++;
 			}
 		}
@@ -138,6 +143,8 @@ public class enviroment : MonoBehaviour {
 
 	void PlayerSetup () {
 		player = Instantiate(Resources.Load("Prefabs/Player")) as GameObject;
+		player.transform.SetParent(this.transform);
+		lookingAt = new Vector3(0, 0, 0);
 	}
 	
 	// ENEMIES

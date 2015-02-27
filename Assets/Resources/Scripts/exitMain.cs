@@ -8,7 +8,7 @@ public class exitMain : MonoBehaviour {
 	void Start () {
 		Screen.showCursor = false;
 		main = this.GetComponent<_MAIN> ();
-		main.quitGame(3.0f);
+		main.quitGame(1.5f);
 	}
 
 }

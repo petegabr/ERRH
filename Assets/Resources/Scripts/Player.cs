@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	private Vector3 position;
+	//private Vector3 position;
 	private Vector3 rotation;
 	private float speedx = 0.0f;
 	private float speedz = 0.0f;
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		position = new Vector3(0, 0, 0);
+		//position = new Vector3(0, 0, 0);
 		rotation = new Vector3(0, 0, 0);
 	}
 	
