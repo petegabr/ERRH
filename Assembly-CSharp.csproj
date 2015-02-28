@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Resources\Scripts\Player.cs" />
      <Compile Include="Assets\Resources\Scripts\_MAIN.cs" />
+     <Compile Include="Assets\Resources\Scripts\enemiesLevel1.cs" />
+     <Compile Include="Assets\Resources\Scripts\enemyWolf.cs" />
      <Compile Include="Assets\Resources\Scripts\enviroment.cs" />
      <Compile Include="Assets\Resources\Scripts\escapeToMainMenu.cs" />
      <Compile Include="Assets\Resources\Scripts\exitMain.cs" />
