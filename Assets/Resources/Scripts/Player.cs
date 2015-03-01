@@ -20,8 +20,6 @@ public class Player : MonoBehaviour {
 	void Start () {
 		rotation = new Vector3(0, 0, 0);
 
-		//mousePositionOld = Input.mousePosition;
-
 		mousePosition = Input.GetAxis("Mouse X");
 	}
 	
@@ -46,19 +44,17 @@ public class Player : MonoBehaviour {
 			speedx = smooth(speedx, 0.0f, deceleration);
 		}
 
-		mousePosition = Input.GetAxis("Mouse X");
-		rotation.y = mousePosition * mouseSensitivity;
-		this.transform.Rotate(rotation);
-
-		//this.transform.position = position;
-
-
 		speedDirection.x = speedx;
 		speedDirection.y = 0;
 		speedDirection.z = speedz;
 		speedDirection.Normalize();
 
-		this.transform.Translate(speedDirection * speedMagnitude * Mathf.Min(1.0f, Mathf.Abs(speedx) + Mathf.Abs(speedz)) );
+		this.transform.Translate(speedDirection * speedMagnitude * Mathf.Min(1.0f, Mathf.Abs(speedx) + Mathf.Abs(speedz)));
+
+		// MOUSE LOOK
+		mousePosition = Input.GetAxis("Mouse X");
+		rotation.y = mousePosition * mouseSensitivity;
+		this.transform.Rotate(rotation);
 	}
 
 	private float smooth(float currentValue, float finalValue, float step) { // actually acceleration
