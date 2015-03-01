@@ -25,13 +25,18 @@ public class enviroment : MonoBehaviour {
 	// PLAYER
 	private GameObject player = null;
 	private Vector3 lookingAt;
-	
+
+	// SKY
+	private GameObject sky = null;
+	private float clouds = 100;
+
 	void Start () {
-		Screen.lockCursor = true;
+		//Screen.lockCursor = true;
 		floorSetup();
 		PlayerSetup();
 		plantTrees();
 		fenceSetup();
+		skySetup();
 	}
 	
 	void Update () {
@@ -99,7 +104,7 @@ public class enviroment : MonoBehaviour {
 	}
 
 	Vector3 randomTreePosition() {
-		float d = floorDimension * floorTileDimension / 2;
+		float d = (floorDimension - 0.5f) * floorTileDimension / 2;
 		return new Vector3(Random.Range(-d, d), 0, Random.Range(-d, d));
 	}
 
@@ -121,6 +126,24 @@ public class enviroment : MonoBehaviour {
 		player.transform.SetParent(this.transform);
 		lookingAt = new Vector3(0, 0, 0);
 	}
+
+	// SKY
+
+	void skySetup() {
+		//sky = new GameObject();
+		sky = Instantiate(Resources.Load("Prefabs/Sky")) as GameObject;
+
+		for (int i = 0; i < clouds; i++) {
+			GameObject cloud = Instantiate(Resources.Load("Prefabs/Cloud")) as GameObject;
+			cloud.transform.SetParent(sky.transform);
+			cloud.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
+			cloud.transform.Translate(new Vector3(0,
+			                                      - floorDimension * floorTileDimension,
+			                                      Random.Range(-100, -5)));
+		}
+
+	}
+
 }
 
 
