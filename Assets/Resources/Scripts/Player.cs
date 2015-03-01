@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	//private Vector3 position;
+	// MOVEMENT
 	private Vector3 rotation;
 	private float speedx = 0.0f;
 	private float speedz = 0.0f;
@@ -12,10 +12,17 @@ public class Player : MonoBehaviour {
 	private Vector3 speedDirection;
 	private float speedMagnitude = 0.07f;
 
+	// CAMERA LOOK
+	private float mousePosition = 0;
+	private float mouseSensitivity = 3f;
+
 	// Use this for initialization
 	void Start () {
-		//position = new Vector3(0, 0, 0);
 		rotation = new Vector3(0, 0, 0);
+
+		//mousePositionOld = Input.mousePosition;
+
+		mousePosition = Input.GetAxis("Mouse X");
 	}
 	
 	// Update is called once per frame
@@ -39,13 +46,9 @@ public class Player : MonoBehaviour {
 			speedx = smooth(speedx, 0.0f, deceleration);
 		}
 
-		if (Input.GetAxis("Mouse X") < 0) {
-			rotation.y = -2f;
-			this.transform.Rotate(rotation);
-		} else if (Input.GetAxis("Mouse X") > 0) {
-			rotation.y = 2f;
-			this.transform.Rotate(rotation);
-		}
+		mousePosition = Input.GetAxis("Mouse X");
+		rotation.y = mousePosition * mouseSensitivity;
+		this.transform.Rotate(rotation);
 
 		//this.transform.position = position;
 
