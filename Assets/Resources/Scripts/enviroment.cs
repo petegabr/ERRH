@@ -31,7 +31,7 @@ public class enviroment : MonoBehaviour {
 	private float clouds = 100;
 
 	void Start () {
-		//Screen.lockCursor = true;
+		Screen.lockCursor = true;
 		floorSetup();
 		PlayerSetup();
 		plantTrees();
@@ -138,7 +138,7 @@ public class enviroment : MonoBehaviour {
 			cloud.transform.SetParent(sky.transform);
 			cloud.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
 			cloud.transform.Translate(new Vector3(0,
-			                                      - floorDimension * floorTileDimension,
+			                                      - floorDimension * floorTileDimension * Random.Range(1, 2),
 			                                      Random.Range(-100, -5)));
 		}
 

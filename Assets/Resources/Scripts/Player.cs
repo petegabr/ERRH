@@ -13,14 +13,20 @@ public class Player : MonoBehaviour {
 	private float speedMagnitude = 0.07f;
 
 	// CAMERA LOOK
-	private float mousePosition = 0;
+	private float mousePositionX = 0;
+	private float mousePositionY = 0;
+	private float minY = -10;
+	private float maxY = 45f;
 	private float mouseSensitivity = 3f;
+	private Vector3 gorDol;
+	private float currY = 0;
 
 	// Use this for initialization
 	void Start () {
 		rotation = new Vector3(0, 0, 0);
-
-		mousePosition = Input.GetAxis("Mouse X");
+		gorDol = new Vector3(0, 0, 0);
+		mousePositionX = Input.GetAxis("Mouse X");
+		mousePositionY = Input.GetAxis("Mouse Y");
 	}
 	
 	// Update is called once per frame
@@ -52,9 +58,18 @@ public class Player : MonoBehaviour {
 		this.transform.Translate(speedDirection * speedMagnitude * Mathf.Min(1.0f, Mathf.Abs(speedx) + Mathf.Abs(speedz)));
 
 		// MOUSE LOOK
-		mousePosition = Input.GetAxis("Mouse X");
-		rotation.y = mousePosition * mouseSensitivity;
+		mousePositionX = Input.GetAxis("Mouse X");
+		rotation.y = mousePositionX * mouseSensitivity;
 		this.transform.Rotate(rotation);
+
+		mousePositionY = Input.GetAxis("Mouse Y");
+		currY += mousePositionY;
+		if (currY > minY && currY < maxY) {
+			gorDol.x = -mousePositionY;
+			Camera.main.transform.Rotate (gorDol);
+		} else if (currY > maxY) {currY = maxY - 0.001f;
+		} else if (currY < minY) {currY = minY - 0.001f;
+		}
 	}
 
 	private float smooth(float currentValue, float finalValue, float step) { // actually acceleration
