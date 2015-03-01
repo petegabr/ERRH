@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 	// CAMERA LOOK
 	private float mousePositionX = 0;
 	private float mousePositionY = 0;
-	private float minY = -10;
+	private float minY = -30f;
 	private float maxY = 45f;
 	private float mouseSensitivity = 3f;
 	private Vector3 gorDol;
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour {
 		} else if (currY > maxY) {currY = maxY - 0.001f;
 		} else if (currY < minY) {currY = minY - 0.001f;
 		}
+
 	}
 
 	private float smooth(float currentValue, float finalValue, float step) { // actually acceleration

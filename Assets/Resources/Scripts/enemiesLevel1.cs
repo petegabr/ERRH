@@ -3,15 +3,13 @@ using System.Collections;
 
 public class enemiesLevel1 : MonoBehaviour {
 
-	public GameObject[] enemies = null;
-	public int enemiesCount = 10;
+	private GameObject[] enemies = null;
+	private int enemiesCount = 50;
 
 	private float floorDimension;
 	private float floorTileDimension;
 
 	private Vector3 lookingAt;
-
-
 
 	// Use this for initialization
 	void Start () {
@@ -21,9 +19,9 @@ public class enemiesLevel1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		lookingAt = Camera.main.transform.position;
-		lookingAt.y = 0.0f;
+		lookingAt.y = 1.0f;
 		foreach (GameObject wolf in enemies) {
-			wolf.transform.LookAt(lookingAt);
+			wolf.transform.GetChild(0).transform.LookAt(lookingAt);
 		}
 
 	}
@@ -41,9 +39,9 @@ public class enemiesLevel1 : MonoBehaviour {
 	}
 
 	Vector3 randomPosition() {
-		return new Vector3(Random.Range(- floorDimension * floorTileDimension / 2, floorDimension * floorTileDimension / 2),
+		return new Vector3(Random.Range(- (floorDimension - 1) * floorTileDimension / 2, floorDimension * floorTileDimension / 2),
 		                   0,
-		                   Random.Range(- floorDimension * floorTileDimension / 2, floorDimension * floorTileDimension / 2));
+		                   Random.Range(- (floorDimension - 1) * floorTileDimension / 2, floorDimension * floorTileDimension / 2));
 	}
 }
 
