@@ -4,7 +4,7 @@ using System.Collections;
 public class enemiesLevel1 : MonoBehaviour {
 
 	private GameObject[] enemies = null;
-	private int enemiesCount = 50;
+	private int enemiesCount = 33;
 
 	private float floorDimension;
 	private float floorTileDimension;
@@ -19,7 +19,7 @@ public class enemiesLevel1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		lookingAt = Camera.main.transform.position;
-		lookingAt.y = 1.0f;
+		lookingAt.y = 0.0f;
 		foreach (GameObject wolf in enemies) {
 			wolf.transform.GetChild(0).transform.LookAt(lookingAt);
 		}
