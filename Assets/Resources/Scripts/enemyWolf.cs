@@ -25,6 +25,7 @@ public class enemyWolf : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider x) {
+		//Debug.Log(x.name);
 		tempA = this.transform.position;
 		tempA.y = 0;
 		if (x.name != "FenceCollider") {
