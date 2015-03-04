@@ -15,7 +15,7 @@ public class enviroment : MonoBehaviour {
 	// TREES
 	private GameObject[] trees = null;
 	private int differentTrees = 3;
-	private int treeCount = 200;
+	public int treeCount = 200;
 	float minTreeSize = 0.5f;
 	float maxTreeSize = 1.5f;
 
@@ -114,7 +114,7 @@ public class enviroment : MonoBehaviour {
 		fences = new GameObject[4];
 		for (int i = 0; i < 4; i++) {
 			fences[i] = Instantiate(Resources.Load("Prefabs/Fence")) as GameObject;
-			fences[i].transform.Rotate(new Vector3(0f, i * 90f, 0f));
+			fences[i].transform.Rotate(new Vector3(0f, -i * 90f, 0f));
 			fences[i].transform.Translate(new Vector3(0f, 0f, floorDimension * floorTileDimension / 2));
 		}
 	}

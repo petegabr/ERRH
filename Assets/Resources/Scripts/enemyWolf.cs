@@ -6,29 +6,44 @@ public class enemyWolf : MonoBehaviour {
 	// MOVING
 	private Vector3 direction;
 	private float speed = 0.03f;
-	
+
+	// LIFE
+	private float life = 1;
+	private float lifeMax;
+	public GameObject lifeBar = null;
+	private Vector3 lb = new Vector3(0.1f, 0.03f, 0.004f);
+
 	// COLLISION
 	private Vector3 tempA = new Vector3(0, 0, 0);
 	private Vector3 tempB = new Vector3(0, 0, 0);
-
-	void p(Vector3 foo) {
-		Debug.Log("(" + foo.x + ", " + foo.y + ", " + foo.z + ")");
-	}
 
 	void Start () {
 		randomDirection();
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 		this.transform.Translate(direction);
 	}
 	
 	void OnTriggerEnter(Collider x) {
-		//Debug.Log(x.name);
 		tempA = this.transform.position;
 		tempA.y = 0;
 		if (x.name != "FenceCollider") {
+			if (x.name == "Weapon") {
+				if (life == 1) {
+					lifeBar.renderer.enabled = true;
+				} else if (life < 0) {
+					this.transform.Translate(new Vector3(0, -200f, 0));
+					Destroy(this);
+				}
+				life -= 0.1f;
+				lb.x = life / 10;
+				lifeBar.transform.localScale = lb;
+				speed = 0.06f;
+			} else {
+				speed = 0.03f;
+			}
+
 			if (x.name != "WolfCollider") {
 				tempB = x.transform.position;
 				tempB.y = 0;
@@ -40,7 +55,7 @@ public class enemyWolf : MonoBehaviour {
 			direction = -tempA;
 		}
 		direction.Normalize();
-		direction *= 0.03f;
+		direction *= speed;
 	}
 
 
