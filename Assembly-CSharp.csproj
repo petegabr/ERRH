@@ -60,6 +60,7 @@
      <Compile Include="Assets\Resources\Scripts\splash.cs" />
      <Compile Include="Assets\Resources\Scripts\story.cs" />
      <Compile Include="Assets\Resources\Scripts\weaponSwing.cs" />
+     <Compile Include="Assets\transparenter.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

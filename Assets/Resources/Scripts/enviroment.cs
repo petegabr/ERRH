@@ -54,13 +54,13 @@ public class enviroment : MonoBehaviour {
 		if (floorDimension % 2 == 1) {
 			floorDimension += 1;
 		}
-		floor = new GameObject[floorDimension * floorDimension];
+		floor = new GameObject[floorDimension * floorDimension * 4];
 		int stevec = 0;
 		Vector3 floorPosition = new Vector3(0, 0, 0);
-		for (int i = -floorDimension / 2; i < floorDimension / 2; i++) {
-			for (int j = -floorDimension / 2; j < floorDimension / 2; j++) {
-				floorPosition.x = i * floorTileDimension + floorTileDimension / 2;
-				floorPosition.z = j * floorTileDimension + floorTileDimension / 2;
+		for (int i = -floorDimension; i < floorDimension; i++) {
+			for (int j = -floorDimension; j < floorDimension; j++) {
+				floorPosition.x = i * floorTileDimension + floorTileDimension;
+				floorPosition.z = j * floorTileDimension + floorTileDimension;
 				floor[stevec] = Instantiate(Resources.Load("Prefabs/FloorPlane"), floorPosition, Quaternion.identity) as GameObject;
 				floor[stevec].renderer.material = randomFloorMaterial();
 				//floor[stevec].renderer.transform.Rotate(new Vector3(0, Random.Range(0, 3) * 90, 0));

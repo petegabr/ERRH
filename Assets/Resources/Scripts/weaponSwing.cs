@@ -15,7 +15,8 @@ public class weaponSwing : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (Input.GetMouseButton(0) && !hitting){
+		if (Input.GetMouseButton(0) && !hitting ||
+		    (Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) && !hitting){
 			ani.SetTrigger("hit");
 			hitting = true;
 			stopped = false;
